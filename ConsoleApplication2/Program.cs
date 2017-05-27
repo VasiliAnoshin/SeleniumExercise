@@ -13,8 +13,7 @@ namespace ConsoleApplication2
         static void Main(string[] args)
         {
             Controller controller = new Controller();
-            controller.Start();
-            //controller.getRelativePath();    
+            controller.Start();   
         }
     }          
 }

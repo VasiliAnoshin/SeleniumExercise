@@ -13,14 +13,14 @@ namespace ConsoleApplication2
 {
     class Controller
     {
-        private readonly string temporaryRepositoryName = "TemporaryRepository2";
+        private readonly string temporaryRepositoryName = "TemporaryRepository";
         private readonly string email = "benfranklin890@gmail.com";
         private readonly string password = "benfranklin890";
         private readonly string url = "http://www.github.com/";
 
         public void Start()
         {    
-            //"C:\\Users\\User\\Downloads\\chromedriver_win32"
+            //chromedriver
             using (IWebDriver driver = new ChromeDriver(getRelativePath()))
             {
                 //Browse to GitHub home page: https://github.com/
@@ -49,14 +49,14 @@ namespace ConsoleApplication2
                 IWebElement repositoryNameTxtField = driver.FindElement(By.Name("repository[name]"));
                 repositoryNameTxtField.SendKeys(temporaryRepositoryName);
 
-                //Write the repository description.
+                //Write repository description.
                 IWebElement repositoryDescriptionTxtField = driver.FindElement(By.Name("repository[description]"));
                 repositoryDescriptionTxtField.SendKeys("This is Temporary Repository. Created By Benjamin Franklin.");
                 repositoryDescriptionTxtField.Submit();
 
                 string issueBtn = String.Format("//a[@href='/BenjaminFranklin1888/{0}/issues']", temporaryRepositoryName);
                 driver.FindElement(By.XPath(issueBtn)).Click();
-                ///BenjaminFranklin1888/tempRepo1/issues/new
+                //New issue click
                 string newIssueBtn = String.Format("//a[@href='/BenjaminFranklin1888/{0}/issues/new']", temporaryRepositoryName);
                 IWebElement elem = driver.FindElement(By.XPath(newIssueBtn));
                 IJavaScriptExecutor jss = (IJavaScriptExecutor)driver;
@@ -70,8 +70,7 @@ namespace ConsoleApplication2
                 msgBody.SendKeys("As an inventor, he is known for the lightning rod, bifocals, and the Franklin stove, among other inventions");
                 msgBody.Submit();
                 Console.ReadKey();
-            }
-
+            }        
         }
 
         public string getRelativePath()
