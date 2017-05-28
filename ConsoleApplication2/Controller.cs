@@ -12,12 +12,16 @@ using System.IO;
 namespace ConsoleApplication2
 {
     class Controller
-    {
-        private readonly string temporaryRepositoryName = "TemporaryRepository";
+    {      
+        private readonly string temporaryRepositoryName;
         private readonly string email = "benfranklin890@gmail.com";
         private readonly string password = "benfranklin890";
         private readonly string url = "http://www.github.com/";
 
+        public Controller(string RepositoryName)
+        {
+            this.temporaryRepositoryName = RepositoryName;
+        }
         public void Start()
         {    
             //chromedriver
@@ -47,8 +51,7 @@ namespace ConsoleApplication2
                 options.ElementAt(0).Click();
                 //Write the repository name into the "Repository name" field
                 IWebElement repositoryNameTxtField = driver.FindElement(By.Name("repository[name]"));
-                repositoryNameTxtField.SendKeys(temporaryRepositoryName);
-
+                repositoryNameTxtField.SendKeys(temporaryRepositoryName);                
                 //Write repository description.
                 IWebElement repositoryDescriptionTxtField = driver.FindElement(By.Name("repository[description]"));
                 repositoryDescriptionTxtField.SendKeys("This is Temporary Repository. Created By Benjamin Franklin.");
